@@ -25,12 +25,16 @@ state = {
     console.log(this.props.hogs)
   let hogList = this.props.hogs.map((hog) => {
         return <HogCard name={hog.name} key={hog.id} specialty={hog.specialty} greased={hog.greased} weight={hog.weight} medal={hog.medal} image={hog.image}/>
-  })
+  });
+
+  let filterList = this.state.filteredHogs.map((hogs) => (
+    <HogCard hogs={this.state.hogs} />	      
+  ));	
     return (
       <div className="indexWrapper">
           <Filter />
         {hogList}
-        
+        {filterList}
       </div>
     )
   }
