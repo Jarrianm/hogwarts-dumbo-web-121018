@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Filter = () => {
-    console.log()
-    return <input type='text' placeholder='SearchBar' value={''} onChange={this.changeHandler}/>
+const Filter = (props) => {
+
+
+    console.log(props)
+    return <input type='text' placeholder='SearchBar' value={props.filter} onChange={props.handle}/>
 };
 
 export default Filter

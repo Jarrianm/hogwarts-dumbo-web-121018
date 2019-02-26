@@ -5,35 +5,35 @@ import Filter from "./Filter"
 
 class HogContainer extends Component {
 state = {
-  hogs : [],
-  filteredHogs : [],
+  hogs : this.props.hogs,
+  filteredHogs : this.props.hogs,
   filter: ''
 }
 
 
   changeHandler = e => {
+    console.log(e)
     let term = e.target.value.toLowerCase();
    let filtered = [...this.state.hogs].filter(hogs => hogs.name.toLowerCase().includes(term)) 
     this.setState({
-      filter: e.target.value,
-      term: e.target.value,
+      filter: term,
       filteredHogs: filtered
     })
   }
  
   render() {
     console.log(this.props.hogs)
-  let hogList = this.props.hogs.map((hog) => {
-        return <HogCard name={hog.name} key={hog.id} specialty={hog.specialty} greased={hog.greased} weight={hog.weight} medal={hog.medal} image={hog.image}/>
-  });
+  // let hogList = this.props.hogs.map((hog) => {
+  //       return <HogCard name={hog.name} key={hog.id} specialty={hog.specialty} greased={hog.greased} weight={hog.weight} medal={hog.medal} image={hog.image}/>
+  // });
 
-  let filterList = this.state.filteredHogs.map((hogs) => (
-    <HogCard hogs={this.state.hogs} />	      
+  let filterList = this.state.filteredHogs.map((hog) => (
+    <HogCard name={hog.name} key={hog.id} specialty={hog.specialty} greased={hog.greased} weight={hog.weight} medal={hog.medal} image={hog.image} />	      
   ));	
     return (
       <div className="indexWrapper">
-          <Filter />
-        {hogList}
+          <Filter filter={this.state.filter} handle={this.changeHandler}/>
+        {/* {hogList} */}
         {filterList}
       </div>
     )
